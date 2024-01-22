@@ -5,6 +5,8 @@ import org.aibles.clean_architecture.infrastructure.book.gateway.BookDatabaseGat
 import org.aibles.clean_architecture.infrastructure.configuration.db.repository.BookRepository;
 import org.aibles.clean_architecture.usecase.book.CreateBookUseCase;
 import org.aibles.clean_architecture.usecase.book.DeleteBookUseCase;
+import org.aibles.clean_architecture.usecase.book.GetBookUseCase;
+import org.aibles.clean_architecture.usecase.book.UpdateBookUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,4 +24,17 @@ public class MvcConfiguration {
     BookGateway gateway = new BookDatabaseGateway(repository);
     return new DeleteBookUseCase(gateway);
   }
+
+  @Bean
+  public GetBookUseCase getBookUseCase(BookRepository repository){
+    BookGateway gateway = new BookDatabaseGateway(repository);
+    return new GetBookUseCase(gateway);
+  }
+
+  @Bean
+  public UpdateBookUseCase updateBookUseCase(BookRepository repository){
+    BookGateway gateway = new BookDatabaseGateway(repository);
+    return new UpdateBookUseCase(gateway);
+  }
+
 }

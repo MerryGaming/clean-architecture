@@ -19,7 +19,7 @@ public class BookDatabaseGateway implements BookGateway {
 
   @Override
   public Book update(Book book) {
-    return null;
+    return repository.save(new BookSchema(book)).toBook();
   }
 
   @Override
